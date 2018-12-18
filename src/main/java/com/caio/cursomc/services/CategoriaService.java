@@ -11,12 +11,13 @@ import com.caio.cursomc.repositories.CategoriaRepository;
 @Service
 public class CategoriaService {
 	
-	@Autowired
+	@Autowired //Instancia automaticamente
 	private CategoriaRepository repo;
 	
 	
 	
-	public Categoria buscar(Integer id) {
+	public Categoria buscar(Integer id) { //Método que utiliza
+										  //um objeto do repositório para pesquisar
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElse(null);
 	}

@@ -7,5 +7,5 @@ import com.caio.cursomc.domain.Categoria;
 
 @Repository //Anotação de repositório						//Tipo de objeto, tipo do identificador
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
-	
+	//Interface, classe que não pode ser instanciada diretamente
 }
