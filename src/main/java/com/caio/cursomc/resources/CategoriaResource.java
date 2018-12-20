@@ -23,12 +23,10 @@ public class CategoriaResource {
 	@RequestMapping(value="/{id}",method=RequestMethod.GET) //Requisição básica
 	public ResponseEntity<?> find(@PathVariable Integer id) { //Método para utilizar o serviço que
 															  //Aplica o repositório	
+		
 		Categoria obj = service.buscar(id);
-		
-		Categoria cat1 = new Categoria(1,"Informática");
-		Categoria cat2 = new Categoria(2,"Escritório");
-		
 		return ResponseEntity.ok(obj);
+	
 	}
 	
 	
