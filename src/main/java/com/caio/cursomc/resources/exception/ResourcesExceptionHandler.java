@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.caio.cursomc.services.exception.ObjectNotFoundException;
 
+//Classe auxiliar para cuidar de exceções encontradas
+
 @ControllerAdvice
 public class ResourcesExceptionHandler  {
 	

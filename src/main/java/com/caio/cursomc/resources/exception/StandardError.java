@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class StandardError implements Serializable {
 	
-
+	//Classe auxiliar para passar mensagens de erro
+	
 	private static final long serialVersionUID = 1L;
 	private Integer status;
 	private String msg;
