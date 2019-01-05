@@ -21,10 +21,10 @@ public class ClienteResource {
 	private ClienteService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET) //Requisição básica
-	public ResponseEntity<?> find(@PathVariable Integer id) { //Método para utilizar o serviço que
+	public ResponseEntity<Cliente> find(@PathVariable Integer id) { //Método para utilizar o serviço que
 															  //Aplica o repositório	
 		
-		Cliente obj = service.buscar(id);
+		Cliente obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	
 	}

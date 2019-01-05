@@ -21,10 +21,10 @@ public class PedidoResource {
 	private PedidoService service;
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET) //Requisição básica
-	public ResponseEntity<?> find(@PathVariable Integer id) { //Método para utilizar o serviço que
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) { //Método para utilizar o serviço que
 															  //Aplica o repositório	
 		
-		Pedido obj = service.buscar(id);
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok(obj);
 	
 	}
