@@ -1,8 +1,8 @@
 package com.caio.cursomc.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.caio.cursomc.domain.Categoria;
+import com.caio.cursomc.dto.CategoriaDTO;
 import com.caio.cursomc.services.CategoriaService;
 
 @RestController
@@ -57,6 +58,16 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	
+	@RequestMapping(method=RequestMethod.GET) //Requisição básica
+	public ResponseEntity<List<CategoriaDTO>> findAll() { //Método para utilizar o serviço que
+															  //Aplica o repositório	
+		
+		List <Categoria> list = service.findAll();
+		List<CategoriaDTO> listDto = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok(listDto);
+	
+	}
 	
 
 
