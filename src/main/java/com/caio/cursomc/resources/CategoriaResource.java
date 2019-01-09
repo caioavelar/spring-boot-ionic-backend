@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -24,7 +26,7 @@ public class CategoriaResource {
 	@Autowired
 	private CategoriaService service;
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET) //Requisição básica
+	@RequestMapping(value="/{id}",method=RequestMethod.GET) //Requisição básica para pegar um valor
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) { //Método para utilizar o serviço que
 															  //Aplica o repositório	
 		
@@ -33,7 +35,7 @@ public class CategoriaResource {
 	
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST) //Requisição básica para inserir um valor
 	public ResponseEntity<Void> insert(@RequestBody Categoria obj){
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -43,7 +45,7 @@ public class CategoriaResource {
 	}
 	
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT) //Requisição básica para atualziar um valor
 	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
 		obj.setId(id);
 		obj=service.update(obj);
@@ -52,7 +54,7 @@ public class CategoriaResource {
 		
 	}
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.DELETE) //Requisição básica
+	@RequestMapping(value="/{id}",method=RequestMethod.DELETE) //Requisição básica para deletar um valor
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
@@ -69,6 +71,18 @@ public class CategoriaResource {
 	
 	}
 	
-
+	@RequestMapping(value="/page",method=RequestMethod.GET) //Requisição básica
+	public ResponseEntity<Page<CategoriaDTO>> findPage(
+			@RequestParam(value="page",defaultValue="0") Integer page, 
+			@RequestParam(value="linesPerPage",defaultValue="24")Integer linesPerPage, 
+			@RequestParam(value="orderBy",defaultValue="nome")String orderBy, 
+			@RequestParam(value="direction",defaultValue="ASC")String direction) { //Método para utilizar o serviço que
+															  //Aplica o repositório	
+		
+		Page <Categoria> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<CategoriaDTO> listDto = list.map(obj -> new CategoriaDTO(obj));
+		return ResponseEntity.ok(listDto);
+	
+	}
 
 }
