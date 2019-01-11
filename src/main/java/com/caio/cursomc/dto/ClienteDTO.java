@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import com.caio.cursomc.domain.Cliente;
 import com.caio.cursomc.services.validation.ClienteUpdate;
 
-@ClienteUpdate
+@ClienteUpdate //Anotação personalizada para Validações
 public class ClienteDTO implements Serializable {
 	
 
