@@ -13,7 +13,7 @@ public class CursomcApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception { //Instanciar no momento da execução
+	public void run(String... args) throws Exception {
 		
 		
 		
