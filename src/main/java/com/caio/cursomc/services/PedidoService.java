@@ -35,6 +35,9 @@ public class PedidoService {
 	private ClienteService clienteService;
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	
+	@Autowired
+	private EmailService emailService;
 	public Pedido find(Integer id) { //Método que utiliza
 										  //um objeto do repositório para pesquisar
 		Optional<Pedido> obj = repo.findById(id);
@@ -60,7 +63,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 	
