@@ -43,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 	
 	private static final String[] PUBLIC_MATCHERS_GET= { //ENDPOINTS que podem ser acessados por qualquer usuário
 			"/produtos/**",
-			"/categorias/**"
+			"/categorias/**",
+			"/estados/**"
 			
 	};
 	private static final String[] PUBLIC_MATCHERS_POST= { //ENDPOINTS que podem ser acessados por qualquer usuário
